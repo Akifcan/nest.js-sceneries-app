@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, UseInterceptors, UploadedFile, BadRequestException } from '@nestjs/common';
+import { Controller, Param, Get, Post, Body, UseInterceptors, UploadedFile, BadRequestException } from '@nestjs/common';
 import { ImagesService } from './images.service'
 import { ImagesDto } from './images.dto'
 import { FileInterceptor } from '@nestjs/platform-express'
@@ -17,6 +17,13 @@ export class ImagesController {
   getRandomImage(): Promise<Image> {
       return this.imagesService.randomImage()
   }
+
+  @Get(':id')
+  image(@Param() param) : Promise<Image>{
+    const id = param.id
+    return this.imagesService.scenery(id)
+  }
+
   @Post()
   @UseInterceptors(FileInterceptor('image', { storage }))
   newScenery(@UploadedFile() file: Express.Multer.File, @Body() body: ImagesDto) : Promise<Image>{

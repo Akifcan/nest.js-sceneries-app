@@ -2,7 +2,7 @@ import { diskStorage } from 'multer'
 
 export const storage = diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'src/uploads');
+        cb(null, './src/uploads');
     },
     filename: (req, file, cb) => {
          const allowedTypes : String[] = ["image/png", "image/jpeg", "image/jpg", "image/webp", "image/gif"]

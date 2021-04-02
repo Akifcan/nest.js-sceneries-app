@@ -13,6 +13,9 @@ export class Image {
 
   @Prop({ required: true })
   imageUrl: string;
+
+  @Prop({ default: Date.now })
+  createdAt: Date
 }
 
 export const ImageSchema = SchemaFactory.createForClass(Image);
