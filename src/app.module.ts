@@ -1,10 +1,19 @@
 import { Module } from '@nestjs/common';
 import { ImagesModule } from './images/images.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { ConfigModule } from '@nestjs/config';
+
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb+srv://akifcan:hwGqAIjsOf08VZo6@cluster.xj7i3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'),
+    ConfigModule.forRoot({
+      envFilePath: './src/config/.env'
+    }),
+     ServeStaticModule.forRoot({
+      rootPath: './uploads'
+    }),
+    MongooseModule.forRoot(process.env.DB_HOST),
     ImagesModule
   ],
 })

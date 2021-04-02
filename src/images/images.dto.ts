@@ -9,4 +9,12 @@ export class ImagesDto{
     @IsNotEmpty()
     @MaxLength(50, { message: 'Konumu çok uzun girdiniz' })
     location: String
+    imageUrl: String
+
+    constructor(author:String, location:String, imageUrl:String) {
+        this.author = author
+        this.location = location
+        this.imageUrl = imageUrl
+    }
+
 }
